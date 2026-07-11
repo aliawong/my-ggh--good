@@ -40,7 +40,7 @@ export default async function ReportsPage() {
                 <span className="font-medium">{p.name}</span>
                 <span className="text-neutral-500">
                   {p.units_sold} sold · ${Number(p.revenue).toFixed(2)} ·{" "}
-                  {p.stock_qty} in stock
+                  {p.stock_qty != null ? `${p.stock_qty} in stock` : "stock TBD"}
                 </span>
               </div>
               <div className="h-2 rounded-full bg-neutral-100">

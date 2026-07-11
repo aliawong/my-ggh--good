@@ -40,6 +40,36 @@ export default function ProductForm({
         </div>
       </div>
 
+      <div className="grid grid-cols-3 gap-4">
+        <div>
+          <label className="text-sm font-medium block mb-1">
+            Item number
+          </label>
+          <input
+            name="item_number"
+            defaultValue={product?.item_number ?? ""}
+            className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm"
+          />
+        </div>
+        <div>
+          <label className="text-sm font-medium block mb-1">Barcode</label>
+          <input
+            name="barcode"
+            defaultValue={product?.barcode ?? ""}
+            className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm"
+          />
+        </div>
+        <div>
+          <label className="text-sm font-medium block mb-1">Pack size</label>
+          <input
+            name="pack_size"
+            defaultValue={product?.pack_size ?? ""}
+            placeholder="e.g. 1 box, 20 pieces"
+            className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm"
+          />
+        </div>
+      </div>
+
       <div>
         <label className="text-sm font-medium block mb-1">Description</label>
         <textarea
@@ -77,25 +107,27 @@ export default function ProductForm({
 
       <div className="grid grid-cols-3 gap-4">
         <div>
-          <label className="text-sm font-medium block mb-1">Price ($)</label>
+          <label className="text-sm font-medium block mb-1">
+            Price ($) — leave blank if not set yet
+          </label>
           <input
             type="number"
             name="price"
             min={0}
             step="0.01"
-            required
-            defaultValue={product?.price ?? 0}
+            defaultValue={product?.price ?? ""}
             className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm"
           />
         </div>
         <div>
-          <label className="text-sm font-medium block mb-1">Stock qty</label>
+          <label className="text-sm font-medium block mb-1">
+            Stock qty — leave blank if not set yet
+          </label>
           <input
             type="number"
             name="stock_qty"
             min={0}
-            required
-            defaultValue={product?.stock_qty ?? 0}
+            defaultValue={product?.stock_qty ?? ""}
             className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm"
           />
         </div>
@@ -105,10 +137,10 @@ export default function ProductForm({
           </label>
           <select
             name="target_age_group"
-            defaultValue={product?.target_age_group ?? "All ages"}
+            defaultValue={product?.target_age_group ?? ""}
             className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm"
           >
-            <option value="All ages">All ages</option>
+            <option value="">Not set</option>
             {AGE_GROUPS.map((group) => (
               <option key={group} value={group}>
                 {group}

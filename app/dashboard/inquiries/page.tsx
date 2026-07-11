@@ -128,14 +128,16 @@ export default async function InquiriesPage() {
                       name="unit_price"
                       min={0}
                       step="0.01"
-                      defaultValue={inq.products?.price ?? 0}
+                      defaultValue={inq.products?.price ?? ""}
                       required
                       className="w-1/2 rounded-lg border border-neutral-300 px-2 py-1.5 text-sm"
                       placeholder="Unit price"
                     />
                   </div>
                   <p className="text-xs text-neutral-500">
-                    {inq.products?.stock_qty ?? 0} in stock
+                    {inq.products?.stock_qty != null
+                      ? `${inq.products.stock_qty} in stock`
+                      : "stock TBD"}
                   </p>
                   <button
                     type="submit"

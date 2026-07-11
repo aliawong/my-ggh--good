@@ -6,9 +6,12 @@ export type Product = {
   description: string;
   pros: string[];
   benefits: string[];
-  price: number;
-  stock_qty: number;
-  target_age_group: string;
+  price: number | null;
+  stock_qty: number | null;
+  target_age_group: string | null;
+  item_number: string | null;
+  barcode: string | null;
+  pack_size: string | null;
   image_url: string | null;
   created_at: string;
   updated_at: string;
@@ -48,7 +51,7 @@ export type ProductPerformance = {
   product_id: string;
   name: string;
   category: string;
-  stock_qty: number;
+  stock_qty: number | null;
   units_sold: number;
   revenue: number;
 };

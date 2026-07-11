@@ -11,6 +11,16 @@ function parseLines(value: FormDataEntryValue | null): string[] {
     .filter(Boolean);
 }
 
+function optionalNumber(value: FormDataEntryValue | null): number | null {
+  const trimmed = String(value ?? "").trim();
+  return trimmed === "" ? null : Number(trimmed);
+}
+
+function optionalText(value: FormDataEntryValue | null): string | null {
+  const trimmed = String(value ?? "").trim();
+  return trimmed === "" ? null : trimmed;
+}
+
 function productFromForm(formData: FormData) {
   return {
     name: String(formData.get("name") ?? "").trim(),
@@ -19,10 +29,13 @@ function productFromForm(formData: FormData) {
     description: String(formData.get("description") ?? "").trim(),
     pros: parseLines(formData.get("pros")),
     benefits: parseLines(formData.get("benefits")),
-    price: Number(formData.get("price") ?? 0),
-    stock_qty: Number(formData.get("stock_qty") ?? 0),
-    target_age_group: String(formData.get("target_age_group") ?? "All ages"),
-    image_url: String(formData.get("image_url") ?? "").trim() || null,
+    price: optionalNumber(formData.get("price")),
+    stock_qty: optionalNumber(formData.get("stock_qty")),
+    target_age_group: optionalText(formData.get("target_age_group")),
+    item_number: optionalText(formData.get("item_number")),
+    barcode: optionalText(formData.get("barcode")),
+    pack_size: optionalText(formData.get("pack_size")),
+    image_url: optionalText(formData.get("image_url")),
   };
 }
 

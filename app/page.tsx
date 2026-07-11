@@ -60,18 +60,22 @@ export default async function Home() {
             </p>
             <div className="mt-4 flex items-center justify-between text-sm">
               <span className="font-semibold text-brand-700">
-                ${Number(product.price).toFixed(2)}
+                {product.price != null ? `$${Number(product.price).toFixed(2)}` : "Price TBD"}
               </span>
               <span
                 className={
-                  product.stock_qty > 0
-                    ? "text-green-700"
-                    : "text-red-600 font-medium"
+                  product.stock_qty == null
+                    ? "text-neutral-400"
+                    : product.stock_qty > 0
+                      ? "text-green-700"
+                      : "text-red-600 font-medium"
                 }
               >
-                {product.stock_qty > 0
-                  ? `${product.stock_qty} in stock`
-                  : "Out of stock"}
+                {product.stock_qty == null
+                  ? "Stock TBD"
+                  : product.stock_qty > 0
+                    ? `${product.stock_qty} in stock`
+                    : "Out of stock"}
               </span>
             </div>
           </Link>

@@ -44,21 +44,25 @@ export default async function ProductPage({
             <div>
               <dt className="text-neutral-500">Price</dt>
               <dd className="font-semibold text-lg text-brand-700">
-                ${Number(product.price).toFixed(2)}
+                {product.price != null ? `$${Number(product.price).toFixed(2)}` : "TBD"}
               </dd>
             </div>
             <div>
               <dt className="text-neutral-500">Availability</dt>
               <dd
                 className={
-                  product.stock_qty > 0
-                    ? "font-semibold text-green-700"
-                    : "font-semibold text-red-600"
+                  product.stock_qty == null
+                    ? "font-semibold text-neutral-400"
+                    : product.stock_qty > 0
+                      ? "font-semibold text-green-700"
+                      : "font-semibold text-red-600"
                 }
               >
-                {product.stock_qty > 0
-                  ? `${product.stock_qty} in stock`
-                  : "Out of stock"}
+                {product.stock_qty == null
+                  ? "TBD"
+                  : product.stock_qty > 0
+                    ? `${product.stock_qty} in stock`
+                    : "Out of stock"}
               </dd>
             </div>
             <div>
@@ -67,8 +71,26 @@ export default async function ProductPage({
             </div>
             <div>
               <dt className="text-neutral-500">Best for age group</dt>
-              <dd className="font-medium">{product.target_age_group}</dd>
+              <dd className="font-medium">{product.target_age_group || "—"}</dd>
             </div>
+            {product.item_number && (
+              <div>
+                <dt className="text-neutral-500">Item number</dt>
+                <dd className="font-medium">{product.item_number}</dd>
+              </div>
+            )}
+            {product.barcode && (
+              <div>
+                <dt className="text-neutral-500">Barcode</dt>
+                <dd className="font-medium">{product.barcode}</dd>
+              </div>
+            )}
+            {product.pack_size && (
+              <div>
+                <dt className="text-neutral-500">Pack size</dt>
+                <dd className="font-medium">{product.pack_size}</dd>
+              </div>
+            )}
           </dl>
 
           {product.pros.length > 0 && (

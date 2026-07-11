@@ -21,7 +21,7 @@ export default async function DashboardOverview() {
     ]);
 
   const lowStock = ((products as Product[]) ?? []).filter(
-    (p) => p.stock_qty <= LOW_STOCK_THRESHOLD,
+    (p) => p.stock_qty != null && p.stock_qty <= LOW_STOCK_THRESHOLD,
   );
   const totalRevenue = (sales ?? []).reduce(
     (sum, s) => sum + Number(s.total_amount ?? 0),

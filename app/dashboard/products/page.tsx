@@ -43,22 +43,26 @@ export default async function ProductsPage() {
               <tr key={p.id}>
                 <td className="px-4 py-2 font-medium">{p.name}</td>
                 <td className="px-4 py-2 text-neutral-600">{p.category}</td>
-                <td className="px-4 py-2">${Number(p.price).toFixed(2)}</td>
+                <td className="px-4 py-2">
+                  {p.price != null ? `$${Number(p.price).toFixed(2)}` : "TBD"}
+                </td>
                 <td className="px-4 py-2">
                   <span
                     className={
-                      p.stock_qty === 0
-                        ? "text-red-600 font-medium"
-                        : p.stock_qty <= 20
-                          ? "text-amber-700 font-medium"
-                          : "text-green-700"
+                      p.stock_qty == null
+                        ? "text-neutral-400"
+                        : p.stock_qty === 0
+                          ? "text-red-600 font-medium"
+                          : p.stock_qty <= 20
+                            ? "text-amber-700 font-medium"
+                            : "text-green-700"
                     }
                   >
-                    {p.stock_qty}
+                    {p.stock_qty ?? "TBD"}
                   </span>
                 </td>
                 <td className="px-4 py-2 text-neutral-600">
-                  {p.target_age_group}
+                  {p.target_age_group || "—"}
                 </td>
                 <td className="px-4 py-2 text-right whitespace-nowrap">
                   <Link

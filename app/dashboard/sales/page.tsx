@@ -40,8 +40,9 @@ export default async function SalesPage({
             >
               {((products as Product[]) ?? []).map((p) => (
                 <option key={p.id} value={p.id}>
-                  {p.name} (${Number(p.price).toFixed(2)}, {p.stock_qty} in
-                  stock)
+                  {p.name} (
+                  {p.price != null ? `$${Number(p.price).toFixed(2)}` : "price TBD"},{" "}
+                  {p.stock_qty != null ? `${p.stock_qty} in stock` : "stock TBD"})
                 </option>
               ))}
             </select>
